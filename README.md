@@ -1,60 +1,55 @@
-# JobLens //
+<div align="center">
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/React-Dark.svg" width="60" alt="React" />
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/TypeScript.svg" width="60" alt="TypeScript" />
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/TailwindCSS-Dark.svg" width="60" alt="Tailwind" />
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/MongoDB.svg" width="60" alt="MongoDB" />
+  <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/NodeJS-Dark.svg" width="60" alt="Node" />
 
-An intelligent, AI-powered job application tracker designed for modern job seekers. JobLens instantly parses complex job descriptions and converts them into structured metrics with customized resume power-bullets, organizing everything into a sleek, dark-mode Kanban board.
+  <h1 align="center">JobLens //</h1>
+  <p align="center">
+    <strong>Decode. Organize. Dominate your job search.</strong>
+  </p>
+  <p align="center">
+    An intelligent, AI-powered application tracker designed for the modern job seeker. JobLens uses semantic AI parsing to shred complex job descriptions into structured roadmaps—matching exactly what companies are looking for into powerful resume bullet points.
+  </p>
+</div>
 
-## Features ✨
+<br />
 
-### 🔮 AI Job Description Analyzer
-- **Instant Decoding**: Paste any job description into the Analyzer, and JobLens will instantly extract the Company, Role, Location, Seniority, and Required Skills using OpenAI.
-- **Resume Power-Bullets**: Automatically generates tailored resume points highlighting precisely what the prospective employer is looking for based on the parsed data.
-- **Distraction-Free Parsing**: A full-screen, grid-backed neumorphic extraction zone designed to process job descriptions without clutter.
+## ✨ Core Features
 
-### 📋 Interactive Kanban Dashboard
-- **Drag-and-Drop Workflow**: Visually track your applications across the entire pipeline (`Applied`, `Phone Screen`, `Interview`, `Offer`, `Rejected`) using intuitive drag-and-drop mechanics.
-- **Statistical Overview**: A quick-scan header containing dynamic widgets summarizing total applications, active processes, and offers at a glance.
-- **Detailed Card Editor**: Click any application card to pull up a comprehensive detail modal. Store the original Job Description link, expected salary ranges, and personal notes like recruiter feedback.
+### 🧠 The 'Analyzer' Engine
+Paste any job description block into the minimalist extraction zone. JobLens’ proprietary API instantly processes and extracts:
+- **Core Logistics**: Company Name, Job Title, Geographic Location, and Required Seniority.
+- **Skill Matrices**: Ranks and maps out mandatory vs. nice-to-have technical skills.
+- **Tailored Resume Powermatches**: Formulates high-impact resume bullet points using the exact keywords and context derived from the employer’s own language.
 
-## Technology Stack 💻
+### 📊 Tactical Kanban Dashboard
+Command your entire interview pipeline from a central operations hub.
+- **Dynamic Board**: Visually transition your applications through stages (`Applied` → `Phone Screen` → `Interview` → `Offer` → `Rejected`) using fluid drag-and-drop mechanics.
+- **Micro-Metric Reporting**: Track aggregate health metrics like active processes versus rejection rates instantly via the interactive top row. 
+- **Deep Storage Modals**: Store crucial contextual nodes per application (Expected salary negotiations, JD source links, and private recruiter notes).
 
-JobLens is built using a modern **MERN + TypeScript** Architecture.
+<br />
 
-*   **Frontend**: 
-    *   **React + Vite**: For blazing-fast compilation and highly responsive component structures.
-    *   **Tailwind CSS**: A fully custom design system using rich dark modes, glassmorphism (`backdrop-blur`), mesh gradients, and micro-animations.
-    *   **TanStack React Query**: Manages complex server state, optimistic updates, and cache invalidation automatically.
-*   **Backend**: 
-    *   **Node.js / Express**: Robust REST Architecture.
-    *   **MongoDB**: Flexible document structures to house deep analytics on job postings.
-    *   **OpenAI SDK**: Handles semantic analysis of raw text using zero-configuration fallback logic if quota is exceeded.
+## 🛠️ Technology Stack Ecosystem
 
-## Getting Started 🚀
+JobLens was engineered fully with a robust, type-safe **MERN + TypeScript** Architecture to guarantee massive scalability and sub-millisecond component interactions.
 
-To get this project running on your local machine:
+| Domain | Technology | Implementation Detail |
+| :--- | :--- | :--- |
+| **Frontend Core** | React + Vite | Blazing fast client-side navigation with near-instant module hot replacement. |
+| **Styling & UX** | Tailwind CSS | Intricate component styling using glassmorphism (`backdrop-blur`), spatial meshes, and custom dark-mode tokenization. |
+| **Data Fetching** | TanStack React Query | Seamless server-state synchronization with built-in optimistic UI updates and aggressive cache management. |
+| **Backend Engine** | Express.js (Node) | Highly concurrent REST endpoints mapped via Typescript validation logic. |
+| **Database Layer**| MongoDB | Flexible JSON-like document storage supporting rapid query throughput for large user application arrays. |
+| **AI Processing** | OpenAI Architecture | Sophisticated LLM-driven semantic text extraction acting dynamically against strict output schemas. |
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/sakshi1013-coder/JobLens.git
-   cd JobLens
-   ```
+<br />
 
-2. **Backend Setup:**
-   ```bash
-   cd server
-   npm install
-   ```
-   *Create a `.env` file in the `server` folder with:* `PORT`, `MONGO_URI`, `JWT_SECRET`, `OPENAI_API_KEY`, `CLIENT_URL`.
-   ```bash
-   npm run dev
-   ```
+## 🎨 UI/UX Philosophy
 
-3. **Frontend Setup:**
-   ```bash
-   cd ../client
-   npm install
-   ```
-   *Create a `.env` file in the `client` folder with:* `VITE_API_URL`.
-   ```bash
-   npm run dev
-   ```
-
-4. **Access the application:** Open `http://localhost:5173` in your browser.
+The interface was designed rejecting standard UI cliches. JobLens operates on an immersive "Midnight Glass" paradigm:
+1. Deep indigo and fuchsia color scaling to command user focus.
+2. Fluid micro-animations (`active:scale-95`, `translate-y-1`) rendering applications tactile and responsive.
+3. Completely distraction-free landing views built specifically for uncompromised cognitive flow when dissecting technical job requirements.
