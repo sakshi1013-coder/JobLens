@@ -4,6 +4,7 @@
   "description": "MERN AI job tracker",
   "private": true,
   "scripts": {
+    "postinstall": "npm install --prefix server && npm install --prefix client",
     "dev:client": "npm run dev --prefix client",
     "dev:server": "npm run dev --prefix server",
     "build": "npm run build --prefix server && npm run build --prefix client"
