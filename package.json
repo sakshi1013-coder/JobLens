@@ -1,0 +1,14 @@
+{
+  "name": "khurana-technology",
+  "version": "1.0.0",
+  "description": "MERN AI job tracker",
+  "private": true,
+  "scripts": {
+    "dev:client": "npm run dev --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "build": "npm run build --prefix server && npm run build --prefix client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
