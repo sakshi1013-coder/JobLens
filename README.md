@@ -32,24 +32,70 @@ Command your entire interview pipeline from a central operations hub.
 
 <br />
 
-## 🛠️ Technology Stack Ecosystem
+## 🛠️ Architecture & Design Decisions
 
-JobLens was engineered fully with a robust, type-safe **MERN + TypeScript** Architecture to guarantee massive scalability and sub-millisecond component interactions.
+Designing JobLens required deliberate architectural tradeoffs to ensure scalability and ultra-low latency UX.
 
-| Domain | Technology | Implementation Detail |
-| :--- | :--- | :--- |
-| **Frontend Core** | React + Vite | Blazing fast client-side navigation with near-instant module hot replacement. |
-| **Styling & UX** | Tailwind CSS | Intricate component styling using glassmorphism (`backdrop-blur`), spatial meshes, and custom dark-mode tokenization. |
-| **Data Fetching** | TanStack React Query | Seamless server-state synchronization with built-in optimistic UI updates and aggressive cache management. |
-| **Backend Engine** | Express.js (Node) | Highly concurrent REST endpoints mapped via Typescript validation logic. |
-| **Database Layer**| MongoDB | Flexible JSON-like document storage supporting rapid query throughput for large user application arrays. |
-| **AI Processing** | OpenAI Architecture | Sophisticated LLM-driven semantic text extraction acting dynamically against strict output schemas. |
+1. **Monolithic Monorepo Organization**: We nested the `server` and `client` inside a single repository structure leveraging a root `package.json` with a recursive `postinstall` script. This enforces atomic deployment integrity without requiring complex submodules, making Vercel CI/CD pipelines seamless.
+2. **Dual-View UI Paradigms**: We deliberately avoided complex client-side routing libraries (like `react-router-dom`) to minimize bundle size. Instead, we implemented a sophisticated `currentView` local state toggler to flawlessly swap between the AI-Analyzer Landing View and the Kanban Board without triggering total DOM rerenders.
+3. **Optimistic UI with React Query**: We heavily utilize `@tanstack/react-query`. Rather than explicitly managing loading states and `useEffect` hooks across multiple components, the frontend optimistically binds to data queries and automatically invalidates caching markers upon successful mutations (drag-and-drops).
+4. **Resilient AI Parsing**: The backend utilizes the OpenAI SDK to interpret raw job postings. To protect against unpredictable LLM rate limits or quota errors, the backend is strictly engineered to catch API blocks natively (utilizing `maxRetries: 0`) and instantaneously default to a sophisticated Regex-based local processing script.
 
 <br />
 
-## 🎨 UI/UX Philosophy
+## 🔑 Environment Variables
 
-The interface was designed rejecting standard UI cliches. JobLens operates on an immersive "Midnight Glass" paradigm:
-1. Deep indigo and fuchsia color scaling to command user focus.
-2. Fluid micro-animations (`active:scale-95`, `translate-y-1`) rendering applications tactile and responsive.
-3. Completely distraction-free landing views built specifically for uncompromised cognitive flow when dissecting technical job requirements.
+To properly launch the stack on your local machine, you must feed specific environmental parameters to both ends.
+
+### Backend (`server/.env`)
+Create a `.env` file directly inside the `server/` directory:
+```env
+PORT=5000
+MONGO_URI=mongodb+srv://<your_username>:<your_password>@cluster.mongodb.net/JobLens
+JWT_SECRET=super_secret_cryptographic_key_here
+OPENAI_API_KEY=sk-proj-xxxxxxxxxxxx
+CLIENT_URL=http://localhost:5173
+```
+
+### Frontend (`client/.env`)
+Create a `.env` file directly inside the `client/` directory:
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+<br />
+
+## 🚀 How to Run Locally
+
+You must initialize the backend daemon and the frontend React process simultaneously.
+
+### 1. Boot up the Backend Server
+1. Navigate into the backend repository layer:
+   ```bash
+   cd server
+   ```
+2. Install NodeJS dependencies:
+   ```bash
+   npm install
+   ```
+3. Initialize the development environment:
+   ```bash
+   npm run dev
+   ```
+   *The Express server will hook into MongoDB and output `Server running on port 5000`.*
+
+### 2. Boot up the Frontend Client
+1. Open a **second, completely separate terminal window**.
+2. Navigate into the frontend repository layer:
+   ```bash
+   cd client
+   ```
+3. Install the web dependencies:
+   ```bash
+   npm install
+   ```
+4. Initialize the Vite environment:
+   ```bash
+   npm run dev
+   ```
+5. **Liftoff!** Open [http://localhost:5173](http://localhost:5173) in your Chrome/Safari browser to interact with JobLens locally!
