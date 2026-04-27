@@ -10,7 +10,10 @@ import { AIService } from "./aiService";
 import type { ApplicationStatus } from "./types";
 
 const app = express();
-app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173" }));
+app.use(cors({ 
+  origin: process.env.CLIENT_URL || true, // Allow all if CLIENT_URL is not set (easier for first deployment)
+  credentials: true 
+}));
 app.use(express.json());
 
 const statuses: ApplicationStatus[] = ["Applied", "Phone Screen", "Interview", "Offer", "Rejected"];
@@ -23,6 +26,8 @@ if (!process.env.MONGO_URI || !jwtSecret) {
 
 mongoose.connect(process.env.MONGO_URI).then(() => {
   console.log("Connected to MongoDB");
+}).catch((err) => {
+  console.error("MongoDB connection error:", err);
 });
 
 type AuthedRequest = express.Request & { userId?: string };
@@ -129,7 +134,11 @@ app.post("/api/ai/parse", authMiddleware, async (req, res) => {
   }
 });
 
-const port = Number(process.env.PORT || 4000);
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== "production") {
+  const port = Number(process.env.PORT || 4000);
+  app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+  });
+}
+
+export default app;
